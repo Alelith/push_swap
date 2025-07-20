@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:21:40 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/17 20:23:33 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/20 10:02:38 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 
 # include "ft_printf.h"
 # include <stdlib.h>
+
+typedef struct s_plan
+{
+	int	idxb;
+	int	target_idx;
+	int	dir_a;
+	int	dir_b;
+	int	moves_a;
+	int	moves_b;
+	int	combined;
+	int	rem_a;
+	int	rem_b;
+	int	total;
+}	t_plan;
 
 typedef struct s_list
 {
@@ -26,13 +40,13 @@ typedef struct s_list
 	void	(*add)(struct s_list*, int);
 	void	(*delete)(struct s_list*, int);
 	void	(*clean)(struct s_list*);
-	int		(*get)(struct s_list*, int);
 	void	(*push)(struct s_list*, struct s_list*);
 	void	(*swap)(struct s_list*);
 	void	(*rotate)(struct s_list*);
 	void	(*rev_rotate)(struct s_list*);
-	int		(*get_smallest)(struct s_list*);
 	int		(*sorted)(struct s_list*);
+	int		(*get)(struct s_list*, int);
+	int		(*contains)(struct s_list*, int);
 }	t_list;
 
 /*Aux func*/
@@ -47,10 +61,13 @@ char			**ft_split(char const *s, char c);
 /*Memory functions*/
 void			*memcopy(void *dest, const void *src, unsigned long n);
 void			*callocation(unsigned long nmemb, unsigned long size);
-void			*reallocation(void *ptr, unsigned long new_size);
+void			*reallocation(void *ptr, unsigned long new_size,
+					unsigned long old_size);
 
 /*Sort functions*/
-void			brute_force(t_list *a, t_list *b);
+t_plan			plan_for_element(t_list *a, t_list *b, int idxb);
+void			sort(t_list *a, t_list *b);
+t_list			lis(t_list *arr);
 void			sa(t_list *a);
 void			sb(t_list *b);
 void			ss(t_list *a, t_list *b);
@@ -74,7 +91,7 @@ void			push_element(t_list *self, t_list *other);
 void			rotate_list(t_list *self);
 void			rev_rotate_list(t_list *self);
 void			swap_list(t_list *self);
-int				get_smallest_element(t_list *self);
 int				is_sorted(t_list *self);
+int				list_contains(t_list *self, int num);
 
 #endif

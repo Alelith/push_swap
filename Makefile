@@ -11,7 +11,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 INCLUDES = includes/
-CC = cc #-Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror
 
 LIBS_DIR = libs/
 PRINTF_DIR = $(LIBS_DIR)printf/
@@ -29,10 +29,10 @@ MEM_DIR = mem_utils/
 MEM = callocation memcopy reallocation
 
 SORT_DIR = sort_func/
-SORT = sa sb ss pa pb ra rb rr rra rrb rrr brute_force
+SORT = sa sb ss pa pb ra rb rr rra rrb rrr lis plan_for_element sort
 
 STACK_DIR = stack_utils/
-STACK = add_element clean_list delete_element get_element push_element resize rotate_list rev_rotate_list swap_list new_list get_smallest_element is_sorted
+STACK = add_element clean_list delete_element get_element push_element resize rotate_list rev_rotate_list swap_list new_list is_sorted list_contains
 
 SRC_FILES += $(MAIN)
 SRC_FILES += $(addprefix $(AUX_DIR), $(AUX))

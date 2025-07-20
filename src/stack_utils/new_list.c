@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:52:29 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/17 20:39:40 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/19 23:06:43 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	new_list(void)
 	list.push = push_element;
 	list.rotate = rotate_list;
 	list.rev_rotate = rev_rotate_list;
-	list.get_smallest = get_smallest_element;
 	list.sorted = is_sorted;
+	list.contains = list_contains;
 	return (list);
 }

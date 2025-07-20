@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:21:37 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/18 17:20:09 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/20 10:35:59 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	fill_list(t_list *list, char *fill_nums)
 	char	**numbers;
 
 	i = 0;
+	ft_printf("%s\n", fill_nums);
 	numbers = ft_split(fill_nums, ' ');
 	while (numbers && numbers[i])
 	{
@@ -42,17 +43,19 @@ static void	fill_list(t_list *list, char *fill_nums)
 
 int	main(int argc, char **argv)
 {
-	int		i;
-	t_list	list;
-	t_list	list2;
+	t_list	a;
+	t_list	b;
 
-	i = 0;
-	list = new_list();
-	list2 = new_list();
-	fill_list(&list, argv[1]);
-	brute_force(&list, &list2);
-	print_stack(&list);
-	list.clean(&list);
-	list2.clean(&list);
-	return (0);
+	if (argc != 2)
+		return (0);
+	a = new_list();
+	b = new_list();
+	fill_list(&a, argv[1]);
+	sort(&a, &b);
+	print_stack(&a);
+	ft_printf("a\n<------------------------------->\nb\n");
+	print_stack(&b);
+	a.clean(&a);
+	b.clean(&b);
+	return (1);
 }

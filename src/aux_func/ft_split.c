@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 23:15:38 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/16 09:55:19 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/19 18:23:03 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_wordcount(char const *s, char delimiter)
 	return (wordcount);
 }
 
-static void	ft_fillarr(char **result, char *str, int wordcount, char c)
+static void	ft_fillarr(char **result, const char *str, int wordcount, char c)
 {
 	int	i;
 	int	next;
