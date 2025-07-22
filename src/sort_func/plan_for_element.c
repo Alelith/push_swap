@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 23:56:52 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/20 10:41:35 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:19:17 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	calculate_best(t_list *a, int value, int *best_idx, int *min_idx)
 	int	min_val;
 
 	i = 0;
-	best_val = __INT_MAX__;
-	min_val = __INT_MAX__;
+	best_val = INT_MAX;
+	min_val = INT_MAX;
 	while (i < a -> length)
 	{
 		v = a -> get(a, i);

@@ -23,7 +23,7 @@ OBJ_DIR = obj/
 MAIN = main
 
 AUX_DIR = aux_func/
-AUX = ft_split ft_strdup ft_strlcpy ft_strlen ft_substr ft_atoi
+AUX = ft_split ft_strdup ft_strlcpy ft_strlen ft_substr ft_atol
 
 MEM_DIR = mem_utils/
 MEM = callocation memcopy reallocation
@@ -32,7 +32,7 @@ SORT_DIR = sort_func/
 SORT = sa sb ss pa pb ra rb rr rra rrb rrr lis plan_for_element sort
 
 STACK_DIR = stack_utils/
-STACK = add_element clean_list delete_element get_element push_element resize rotate_list rev_rotate_list swap_list new_list is_sorted list_contains
+STACK = add_element clean_list delete_element get_element get_smallest push_element resize rotate_list rev_rotate_list swap_list new_list is_sorted list_contains contains_duplicated
 
 SRC_FILES += $(MAIN)
 SRC_FILES += $(addprefix $(AUX_DIR), $(AUX))
@@ -59,7 +59,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJSF)
 	@$(CC) -g -c $< -o $@ -I $(INCLUDES)
 	
 $(OBJSF):
-	@echo "$(MAGENTA)Creating dirs$(DEF_COLOR)"
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)$(AUX_DIR)
 	@mkdir -p $(OBJ_DIR)$(MEM_DIR)

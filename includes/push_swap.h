@@ -6,12 +6,20 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:21:40 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/20 10:02:38 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:18:38 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
+
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
 
 # include "ft_printf.h"
 # include <stdlib.h>
@@ -46,11 +54,13 @@ typedef struct s_list
 	void	(*rev_rotate)(struct s_list*);
 	int		(*sorted)(struct s_list*);
 	int		(*get)(struct s_list*, int);
+	int		(*smallest)(struct s_list*);
 	int		(*contains)(struct s_list*, int);
+	int		(*has_duplicated)(struct s_list*);
 }	t_list;
 
 /*Aux func*/
-int				ft_atoii(const char *nptr);
+long			ft_atol(const char *nptr);
 unsigned long	ft_strlen(const char *s);
 unsigned long	ft_strlcpy(char *dst, const char *src, unsigned long size);
 char			*ft_strdup(const char *s);
@@ -87,11 +97,15 @@ void			add_element(t_list *self, int new);
 void			clean_list(t_list *self);
 void			delete_element(t_list *self, int index);
 int				get_element(t_list *self, int index);
+int				get_smallest(t_list *self);
 void			push_element(t_list *self, t_list *other);
 void			rotate_list(t_list *self);
 void			rev_rotate_list(t_list *self);
 void			swap_list(t_list *self);
 int				is_sorted(t_list *self);
 int				list_contains(t_list *self, int num);
+int				contains_duplicated(t_list *self);
+
+void			print_stack(t_list *lst);
 
 #endif

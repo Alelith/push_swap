@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   get_smallest.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 19:37:09 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/20 16:16:58 by acesteve         ###   ########.fr       */
+/*   Created: 2025/07/20 15:46:51 by acesteve          #+#    #+#             */
+/*   Updated: 2025/07/20 15:50:29 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_list *self)
+int	get_smallest(t_list *self)
 {
 	int	i;
+	int	smallest_idx;
+	int	smallest;
 
-	i = 0;
-	while (i < self -> length - 1)
+	i = 1;
+	smallest_idx = 0;
+	smallest = self -> get(self, 0);
+	while (i < self -> length)
 	{
-		if (self -> get(self, i) > self -> get(self, i + 1))
-			return (0);
+		if (smallest > self -> get(self, i))
+		{
+			smallest_idx = i;
+			smallest = self -> get(self, i);
+		}
 		i++;
 	}
-	return (1);
+	return (smallest_idx);
 }

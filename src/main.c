@@ -6,13 +6,13 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:21:37 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/20 10:35:59 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:29:08 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_stack(t_list *lst)
+void	print_stack(t_list *lst)
 {
 	int	i;
 
@@ -24,37 +24,55 @@ static void	print_stack(t_list *lst)
 	}
 }
 
-static void	fill_list(t_list *list, char *fill_nums)
+static int	fill_list(t_list *list, char *fill_nums)
 {
 	int		i;
+	long	temp;
+	int		has_long;
 	char	**numbers;
 
 	i = 0;
-	ft_printf("%s\n", fill_nums);
+	has_long = 0;
 	numbers = ft_split(fill_nums, ' ');
 	while (numbers && numbers[i])
 	{
-		list -> add(list, ft_atoii(numbers[i]));
+		temp = ft_atol(numbers[i]);
+		if (temp > INT_MAX || temp < INT_MIN)
+			has_long = 1;
+		else
+			list -> add(list, temp);
 		free(numbers[i]);
 		i++;
 	}
 	free(numbers);
+	return (!has_long);
+}
+
+static void	exit_sort(t_list *a, t_list *b, const char *message)
+{
+	ft_printf(message);
+	a -> clean(a);
+	b -> clean(b);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)
 {
+	int		i;
 	t_list	a;
 	t_list	b;
 
-	if (argc != 2)
-		return (0);
+	i = 0;
 	a = new_list();
 	b = new_list();
-	fill_list(&a, argv[1]);
+	if (argc < 2)
+		exit_sort(&a, &b, "Invalid argument");
+	while (i++ < argc)
+		if (!fill_list(&a, argv[i]))
+			exit_sort(&a, &b, "You cannot use long numbers");
+	if (a.has_duplicated(&a))
+		exit_sort(&a, &b, "This set contains duplicated values");
 	sort(&a, &b);
-	print_stack(&a);
-	ft_printf("a\n<------------------------------->\nb\n");
-	print_stack(&b);
 	a.clean(&a);
 	b.clean(&b);
 	return (1);

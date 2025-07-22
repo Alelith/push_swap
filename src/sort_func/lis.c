@@ -6,7 +6,7 @@
 /*   By: acesteve <acesteve@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 23:11:45 by acesteve          #+#    #+#             */
-/*   Updated: 2025/07/19 17:57:05 by acesteve         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:28:29 by acesteve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_list	build_lis_result(t_list *arr, int **tails, int length)
 
 	result = new_list();
 	out = callocation(length, sizeof(int));
-	if (out == NULL)
+	if (!out)
 		return (result);
 	idx = tails[1][length - 1];
 	pos = length - 1;
@@ -92,10 +92,7 @@ static int	process_element(t_list *arr, int i, int *length, int **tails)
 	k = lower_bound_int(tails[0], *length, x);
 	tails[0][k] = x;
 	tails[1][k] = i;
-	if (k > 0)
-		tails[2][i] = tails[1][k - 1];
-	else
-		tails[2][i] = -1;
+	tails[2][i] = tails[1][k - 1];
 	if (k == *length)
 		*length = *length + 1;
 	return (0);
